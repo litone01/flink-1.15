@@ -88,11 +88,11 @@ taskmanager.memory.process.size: 1728m
 
 # The number of task slots that each TaskManager offers. Each slot runs one parallel pipeline.
 
-taskmanager.numberOfTaskSlots: 1
+taskmanager.numberOfTaskSlots: 8
 
 # The parallelism used for programs that did not specify and other parallelism.
 
-parallelism.default: 1
+parallelism.default: 2
 
 # The default file system scheme and authority.
 # 
@@ -142,19 +142,19 @@ parallelism.default: 1
 #
 # Execution checkpointing related parameters. Please refer to CheckpointConfig and ExecutionCheckpointingOptions for more details.
 #
-# execution.checkpointing.interval: 3min
-# execution.checkpointing.externalized-checkpoint-retention: [DELETE_ON_CANCELLATION, RETAIN_ON_CANCELLATION]
-# execution.checkpointing.max-concurrent-checkpoints: 1
-# execution.checkpointing.min-pause: 0
-# execution.checkpointing.mode: [EXACTLY_ONCE, AT_LEAST_ONCE]
-# execution.checkpointing.timeout: 10min
-# execution.checkpointing.tolerable-failed-checkpoints: 0
-# execution.checkpointing.unaligned: false
+execution.checkpointing.interval: 3min
+execution.checkpointing.externalized-checkpoint-retention: DELETE_ON_CANCELLATION
+execution.checkpointing.max-concurrent-checkpoints: 1
+execution.checkpointing.min-pause: 0
+execution.checkpointing.mode: EXACTLY_ONCE
+execution.checkpointing.timeout: 10min
+execution.checkpointing.tolerable-failed-checkpoints: 1
+execution.checkpointing.unaligned: false
 #
 # Supported backends are 'hashmap', 'rocksdb', or the
 # <class-name-of-factory>.
 #
-# state.backend: hashmap
+state.backend: hashmap
 
 # Directory for checkpoints filesystem, when using any of the default bundled
 # state backends.
@@ -306,3 +306,5 @@ rest.bind-address: localhost
 # Interval in milliseconds for refreshing the monitored directories.
 #historyserver.archive.fs.refresh-interval: 10000
 
+# For submission of StateFun as a job
+classloader.parent-first-patterns.additional: org.apache.flink.statefun;org.apache.kafka;com.google.protobuf
